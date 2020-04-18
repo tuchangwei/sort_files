@@ -36,7 +36,8 @@ for subfolder in workFolder.subfolders {
     }
 }
 for subfolder in try! Folder(path: outputFolderPath).subfolders {
-    print(subfolder.parent!.url)
     try! Zip.zipFiles(paths: [subfolder.url], zipFilePath: subfolder.parent!.url.appendingPathComponent(subfolder.name+".zip"), password: nil, progress: nil)
 }
+let zipFile = try File(path: outputFolderPath + "/" + "CustomizableOptions1x.zip")
+try Zip.unzipFile(zipFile.url, destination: Folder.current.url, overwrite: true, password: nil)
 
